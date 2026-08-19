@@ -4,14 +4,15 @@ import com.innowise.arraytask.entity.AbstractArray;
 import com.innowise.arraytask.entity.impl.DoubleArray;
 import com.innowise.arraytask.entity.impl.IntArray;
 import com.innowise.arraytask.exception.ArrayProcessingException;
+import com.innowise.arraytask.factory.impl.ArrayBuilderImpl;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ArrayBuilderTest {
-    private final ArrayBuilder builder = new ArrayBuilder();
+class ArrayBuilderImplTest {
+    private final ArrayBuilderImpl builder = new ArrayBuilderImpl();
 
     @Test
     void testBuildIntArray() throws ArrayProcessingException {

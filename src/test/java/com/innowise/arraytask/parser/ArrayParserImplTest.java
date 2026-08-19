@@ -1,14 +1,15 @@
 package com.innowise.arraytask.parser;
 
 import com.innowise.arraytask.exception.ArrayProcessingException;
+import com.innowise.arraytask.parser.impl.ArrayParserImpl;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ArrayParserTest {
-    private final ArrayParser parser = new ArrayParser();
+class ArrayParserImplTest {
+    private final ArrayParserImpl parser = new ArrayParserImpl();
 
     @Test
     void testParseValid() throws ArrayProcessingException {
