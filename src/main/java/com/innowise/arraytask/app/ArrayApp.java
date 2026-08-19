@@ -3,6 +3,7 @@ package com.innowise.arraytask.app;
 import com.innowise.arraytask.entity.AbstractArray;
 import com.innowise.arraytask.exception.ArrayProcessingException;
 import com.innowise.arraytask.reader.DataFileReader;
+import com.innowise.arraytask.reader.Impl.DataFileReaderImpl;
 import com.innowise.arraytask.service.ArrayStatistics;
 import com.innowise.arraytask.service.ArraySorter;
 import com.innowise.arraytask.service.impl.ArrayStatisticsImpl;
@@ -19,7 +20,7 @@ public class ArrayApp {
 
     public static void main(String[] args) {
         String filePath = "data/input.txt";
-        DataFileReader reader = new DataFileReader(filePath, new ArrayLineValidator());
+        DataFileReader reader = new DataFileReaderImpl(filePath, new ArrayLineValidator());
         try {
             List<AbstractArray> arrays = reader.readArrays();
             ArrayStatistics statistics = new ArrayStatisticsImpl();

@@ -1,6 +1,7 @@
 package com.innowise.arraytask.reader;
 
 import com.innowise.arraytask.entity.AbstractArray;
+import com.innowise.arraytask.reader.Impl.DataFileReaderImpl;
 import com.innowise.arraytask.validator.impl.ArrayLineValidator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -11,7 +12,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class DataFileReaderTest {
+class DataFileReaderImplTest {
     @TempDir
     Path tempDir;
 
@@ -20,7 +21,7 @@ class DataFileReaderTest {
         Path file = tempDir.resolve("input.txt");
         String content = "1, 2, 3\n4;5;6\n1, x, 3\n\n11- 2 - 42-\n";
         Files.write(file, content.getBytes());
-        DataFileReader reader = new DataFileReader(file.toString(), new ArrayLineValidator());
+        DataFileReaderImpl reader = new DataFileReaderImpl(file.toString(), new ArrayLineValidator());
         List<AbstractArray> arrays = reader.readArrays();
         assertEquals(4, arrays.size());
 
