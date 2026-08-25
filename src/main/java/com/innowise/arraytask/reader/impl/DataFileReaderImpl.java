@@ -1,9 +1,9 @@
-package com.innowise.arraytask.reader.Impl;
+package com.innowise.arraytask.reader.impl;
 
 import com.innowise.arraytask.entity.AbstractArray;
 import com.innowise.arraytask.exception.ArrayProcessingException;
-import com.innowise.arraytask.factory.impl.ArrayBuilderImpl;
-import com.innowise.arraytask.parser.impl.ArrayParserImpl;
+import com.innowise.arraytask.factory.ArrayBuilder;
+import com.innowise.arraytask.parser.ArrayParser;
 import com.innowise.arraytask.reader.DataFileReader;
 import com.innowise.arraytask.validator.LineValidator;
 import org.apache.logging.log4j.LogManager;
@@ -21,14 +21,14 @@ public class DataFileReaderImpl implements DataFileReader {
     private static final Logger logger = LogManager.getLogger(DataFileReaderImpl.class);
     private final String filePath;
     private final LineValidator validator;
-    private final ArrayParserImpl parser;
-    private final ArrayBuilderImpl builder;
+    private final ArrayParser parser;
+    private final ArrayBuilder builder;
 
-    public DataFileReaderImpl(String filePath, LineValidator validator) {
+    public DataFileReaderImpl(String filePath, LineValidator validator, ArrayParser parser, ArrayBuilder builder) {
         this.filePath = filePath;
         this.validator = validator;
-        this.parser = new ArrayParserImpl();
-        this.builder = new ArrayBuilderImpl();
+        this.parser = parser;
+        this.builder = builder;
     }
 
     public List<AbstractArray> readArrays() throws ArrayProcessingException {

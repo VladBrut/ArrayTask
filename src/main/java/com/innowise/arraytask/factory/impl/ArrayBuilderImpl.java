@@ -3,7 +3,6 @@ package com.innowise.arraytask.factory.impl;
 import com.innowise.arraytask.entity.AbstractArray;
 import com.innowise.arraytask.entity.impl.DoubleArray;
 import com.innowise.arraytask.entity.impl.IntArray;
-import com.innowise.arraytask.exception.ArrayProcessingException;
 import com.innowise.arraytask.factory.ArrayBuilder;
 
 import java.util.ArrayList;
@@ -27,7 +26,7 @@ public class ArrayBuilderImpl implements ArrayBuilder {
         return this;
     }
 
-    public AbstractArray build() throws ArrayProcessingException {
+    public AbstractArray build() {
         if (data.isEmpty()) {
             return new DoubleArray(0);
         }

@@ -25,8 +25,12 @@ public class DoubleArray extends AbstractArray {
         return data[index];
     }
 
+    public double[] getData() {
+        return data.clone();
+    }
+
     @Override
-    public void set(int index, Number value) {
+    protected void doSet(int index, Number value) {
         data[index] = value.doubleValue();
     }
 
@@ -38,9 +42,5 @@ public class DoubleArray extends AbstractArray {
     @Override
     public String toString() {
         return Arrays.toString(data);
-    }
-
-    public double[] getData() {
-        return data.clone();
     }
 }
