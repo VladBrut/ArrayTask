@@ -4,6 +4,7 @@ import com.innowise.arraytask.comparator.ByIdComparator;
 import com.innowise.arraytask.comparator.ByNameComparator;
 import com.innowise.arraytask.entity.ArrayContainer;
 import com.innowise.arraytask.entity.impl.IntArray;
+import com.innowise.arraytask.exception.ArrayProcessingException;
 import com.innowise.arraytask.specification.ComparisonOperator;
 import com.innowise.arraytask.specification.Specification;
 import com.innowise.arraytask.specification.impl.SumSpecification;
@@ -24,7 +25,7 @@ class InMemoryArrayRepositoryTest {
     private Warehouse warehouse;
 
     @BeforeEach
-    void setUp() {
+    void setUp() throws ArrayProcessingException {
         repository = InMemoryArrayRepository.getInstance();
         repository.clear();
 
@@ -49,7 +50,7 @@ class InMemoryArrayRepositoryTest {
     }
 
     @Test
-    void testRemove() {
+    void testRemove() throws ArrayProcessingException {
         ArrayContainer toRemove = repository.findById(2).getFirst();
         repository.remove(toRemove);
         List<ArrayContainer> all = repository.findAll();
@@ -59,7 +60,7 @@ class InMemoryArrayRepositoryTest {
     }
 
     @Test
-    void testRemoveById() {
+    void testRemoveById() throws ArrayProcessingException {
         repository.removeById(1);
         List<ArrayContainer> all = repository.findAll();
         assertEquals(2, all.size());
@@ -68,21 +69,21 @@ class InMemoryArrayRepositoryTest {
     }
 
     @Test
-    void testFindById() {
+    void testFindById() throws ArrayProcessingException {
         List<ArrayContainer> found = repository.findById(2);
         assertEquals(1, found.size());
         assertEquals("Second", found.getFirst().name());
     }
 
     @Test
-    void testFindByName() {
+    void testFindByName() throws ArrayProcessingException {
         List<ArrayContainer> found = repository.findByName("Third");
         assertEquals(1, found.size());
         assertEquals(3, found.getFirst().id());
     }
 
     @Test
-    void testFindBySpecification() {
+    void testFindBySpecification() throws ArrayProcessingException {
         Specification sumGreaterThan10 = new SumSpecification(10, ComparisonOperator.GREATER);
         List<ArrayContainer> found = repository.findBySpecification(sumGreaterThan10);
         assertEquals(1, found.size());
@@ -90,7 +91,7 @@ class InMemoryArrayRepositoryTest {
     }
 
     @Test
-    void testSortById() {
+    void testSortById() throws ArrayProcessingException {
         repository.sort(new ByIdComparator());
         List<ArrayContainer> sorted = repository.findAll();
         assertEquals(1, sorted.get(0).id());
@@ -99,7 +100,7 @@ class InMemoryArrayRepositoryTest {
     }
 
     @Test
-    void testSortByName() {
+    void testSortByName() throws ArrayProcessingException {
         repository.sort(new ByNameComparator());
         List<ArrayContainer> sorted = repository.findAll();
         assertEquals("First", sorted.get(0).name());
